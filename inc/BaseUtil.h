@@ -75,7 +75,8 @@ namespace Common {
   class BaseUtil {
     public:
       RE::TESDataHandler* SEDH() const { return RE::TESDataHandler::GetSingleton(); }
-      void ShowSkyrimMessage(const char* message) const { RE::DebugMessageBox(message); }
+      // Log-only by policy: no message boxes / in-game dialogs on error paths.
+      void ShowSkyrimMessage(const std::string& message) const { SKSE::log::critical("{}", message); }
       RE::BGSKeyword* ProduceOrGetKw(const std::string& keyword);
       int HasKeywordInList(const RE::BGSKeywordForm* form, const std::vector<RE::BGSKeyword*>& keywords) const;
       SEFormLoc FormToLoc(const RE::TESForm* form, const int choice = nan) const;

@@ -517,10 +517,8 @@ Common::eRes Core::CheckRace(RE::TESRace* const race) const {
   } catch (const std::exception& er) {
     SKSE::log::warn("\tThe race [0x{:x}: {}] caused an error [{}] in the process. TNG tries to ignore it but it might not work properly!", race->GetFormID(),
                     race->GetFormEditorID(), er.what());
-    const char* message = fmt::format("TheNewGentleman: The race [0x{:x}: {}] caused an error [{}]. TNG tries to ignore it but it might cause other problems!", race->GetFormID(),
-                                      race->GetFormEditorID(), er.what())
-                              .c_str();
-    ut->ShowSkyrimMessage(message);
+    ut->ShowSkyrimMessage(fmt::format("TheNewGentleman: The race [0x{:x}: {}] caused an error [{}]. TNG tries to ignore it but it might cause other problems!", race->GetFormID(),
+                                      race->GetFormEditorID(), er.what()));
     return Common::errRace;
   }
   bool isValidSk =
@@ -676,7 +674,7 @@ RE::TESObjectARMO* Core::GetSkinWithAddonForRg(Common::RaceGroupInfo* const rg, 
       resSkin = *preSkins.begin();
       preSkins.erase(preSkins.begin());
     } else {
-      resSkin = ogSkin->CreateDuplicateForm(true, (void*)resSkin)->As<RE::TESObjectARMO>();
+      resSkin = ogSkin->CreateDuplicateForm(true, nullptr)->As<RE::TESObjectARMO>();
     }
     if (!resSkin) {
       SKSE::log::critical("Failed to create a new skin");

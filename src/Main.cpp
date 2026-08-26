@@ -6,8 +6,7 @@
 
 bool CheckRequirements() {
   if (!ut->SEDH()->LookupModByName(Common::mainFile)) {
-    const char* err = fmt::format("Mod [{}] was not found! Make sure that the mod is active in your plugin load order!", Common::mainFile).c_str();
-    ut->ShowSkyrimMessage(err);
+    ut->ShowSkyrimMessage(fmt::format("Mod [{}] was not found! Make sure that the mod is active in your plugin load order!", Common::mainFile));
     return false;
   }
   if (GetModuleHandleW(L"Data\\SKSE\\Plugins\\acon.dll")) {
@@ -20,7 +19,8 @@ bool CheckRequirements() {
 void InitializeLogging() {
   auto path{SKSE::log::log_directory()};
   if (!path) {
-    SKSE::stl::report_and_fail("Unable to lookup SKSE logs directory.");
+    // Log-only by policy: continue without file logging instead of a fatal message box.
+    return;
   }
   *path /= Version::PROJECT;
   *path += ".log"sv;
