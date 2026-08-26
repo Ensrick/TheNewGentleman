@@ -14,9 +14,12 @@ namespace Common {
   inline static const char* cNPCUserAddon{"TNG_ActorAddnUser:"};
 
   inline static constexpr std::tuple<const char*, const char*, bool, RE::FormID> cVanillaDefaults[14]{
-      {"default", "nord", false, 0xA01},        {"redguard", "yokudan", false, 0xA02}, {"breton", "reachmen", false, 0xA03}, {"cyrodi", "imperial", false, 0xA04},
-      {"altmer", "highelf", false, 0xA03},      {"bosmer", "woodelf", false, 0xA01},   {"dunmer", "darkelf", false, 0xA04},  {"orsimer", "orc", false, 0xA02},
-      {"saxhleel", "argonian", true, 0xA01},    {"khajiit", "rhat", true, 0xA05},      {"dremora", "dremora", false, 0xA04}, {"elder", "old", false, 0xA05},
+      // user decision (build doctrine): non-circumcised defaults everywhere -
+      // 0xA01 (TNG_GenitalC, circumcised) replaced with the R addons the other
+      // races already default to (0xA03 humanoid, 0xA05 beast)
+      {"default", "nord", false, 0xA03},        {"redguard", "yokudan", false, 0xA02}, {"breton", "reachmen", false, 0xA03}, {"cyrodi", "imperial", false, 0xA04},
+      {"altmer", "highelf", false, 0xA03},      {"bosmer", "woodelf", false, 0xA03},   {"dunmer", "darkelf", false, 0xA04},  {"orsimer", "orc", false, 0xA02},
+      {"saxhleel", "argonian", true, 0xA05},    {"khajiit", "rhat", true, 0xA05},      {"dremora", "dremora", false, 0xA04}, {"elder", "old", false, 0xA05},
       {"afflicted", "afflicted", false, 0xA03}, {"snowelf", "falmer", false, 0xA05}};
   enum eGenBones { egbBase, egbScrot, egbScrotL, egbScrotR, egbGen01, egbGen02, egbGen03, egbGen04, egbGen05, egbGen06, GenBonesCount };
   inline static const char* genBoneNames[GenBonesCount]{"NPC GenitalsBase [GenBase]",
